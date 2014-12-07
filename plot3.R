@@ -10,7 +10,7 @@
 Create_Plot3<-function()
 {
 
-data_all <- read.csv("./household_power_consumption.txt", header=T, sep=';', na.strings="?", nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
+data_all <- read.csv("household_power_consumption.txt", header=T, sep=';', na.strings="?", nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
 data_all$Date <- as.Date(data_all$Date, format="%d/%m/%Y")
 
 data <- subset(data_all, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
@@ -21,7 +21,8 @@ data$Datetime <- as.POSIXct(datetime)
 
 with(data, {
   plot(Sub_metering_1~Datetime, type="l",
-       ylab="Global Active Power (kilowatts)", xlab="")
+ylab="Energy sub metering", xlab="",par(bg=NA))
+  
   lines(Sub_metering_2~Datetime,col='Red')
   lines(Sub_metering_3~Datetime,col='Blue')
 })
